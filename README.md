@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img src="./public/logo.png" alt="Continuum Logo" width="100" />
+  
+  # Continuum 🚀
+  **The ultimate modern workspace and Notion clone**
 
-## Getting Started
+  <p align="center">
+    <a href="#features">Features</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#architecture">Architecture</a> •
+    <a href="#getting-started">Getting Started</a>
+  </p>
+</div>
 
-First, run the development server:
+---
 
+## 📝 Overview
+Continuum is a high-performance, real-time collaborative workspace built to mirror the core functionality of Notion. Designed with offline support, AI-driven writing assistance, and multiplayer editing, Continuum allows individuals and teams to organize their thoughts, tasks, and schedules seamlessly.
+
+---
+
+## ✨ Features
+
+- **⚡ Real-time Collaboration:** Type alongside your peers with live cursors and instant synchronization using Liveblocks.
+- **📱 Progressive Web App (PWA):** Install the app natively on Desktop or Mobile. Full offline support allowing you to read and write notes without Wi-Fi, syncing instantly upon reconnection.
+- **🤖 Magic AI Integration:** Built-in generative AI (powered by Gemini) via custom `/ai` slash commands to summarize, rewrite, or extract tasks from your text.
+- **🌳 Infinite Document Nesting:** Create child documents inside parent documents infinitely to structure your knowledge base.
+- **🕒 Version History:** Automatic document snapshotting every 5 minutes with a built-in time machine to preview and restore previous versions.
+- **🖼️ Rich Media Uploads:** Drag and drop cover images and file attachments directly into the editor, powered by EdgeStore.
+- **📊 Advanced Views:** Switch between the standard Rich Text Editor, Kanban Board, and Calendar views to visualize your data dynamically.
+- **🔒 Secure Authentication:** Handled seamlessly via Clerk, supporting Email, Google, and GitHub single sign-on.
+- **🌙 Dark Mode:** Beautiful, pixel-perfect light and dark themes tailored with Tailwind CSS and Shadcn UI.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **Language:** TypeScript
+- **Database / Backend:** [Convex](https://www.convex.dev/) (Real-time reactive database)
+- **Multiplayer / WebSockets:** [Liveblocks](https://liveblocks.io/)
+- **Authentication:** [Clerk](https://clerk.com/)
+- **Rich Text Editor:** [BlockNote](https://www.blocknotejs.org/) (ProseMirror based)
+- **Object Storage:** [EdgeStore](https://edgestore.dev/)
+- **Styling:** Tailwind CSS & [Shadcn UI](https://ui.shadcn.com/)
+- **Offline Support:** `@ducanh2912/next-pwa`
+
+---
+
+## 📐 Architecture
+
+Continuum's architecture is highly decentralized across specialized managed services, making it infinitely scalable and entirely serverless.
+
+1. **Frontend (Vercel):** The Next.js application serves React Server Components and Client Components. The `next-pwa` plugin injects Service Workers at build time for offline caching.
+2. **Data Layer (Convex):** All documents, hierarchy relationships, and version histories are stored in Convex. UI components subscribe to queries via `useQuery`, providing instant reactivity when data changes.
+3. **Collaboration Layer (Liveblocks):** When the editor mounts, Liveblocks establishes a WebSocket connection. It utilizes Yjs (Conflict-free Replicated Data Types) to merge simultaneous user edits in real-time without data loss.
+4. **Auth Layer (Clerk):** Middleware intercepts requests to secure private routes. Authentication tokens are passed into both Convex and Liveblocks to authorize database reads and multiplayer room access.
+
+---
+
+## 🚀 Getting Started
+
+Follow these instructions to set up the project locally.
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/Continuum.git
+cd Continuum
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Setup Environment Variables
+Create a `.env.local` file in the root directory and add the following keys. You will need to obtain these from their respective dashboards:
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/documents
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/documents
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+NEXT_PUBLIC_CONVEX_URL=
 
-## Learn More
+NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=
+LIVEBLOCKS_SECRET_KEY=
 
-To learn more about Next.js, take a look at the following resources:
+EDGE_STORE_ACCESS_KEY=
+EDGE_STORE_SECRET_KEY=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GEMINI_API_KEY=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Initialize Convex
+Push the database schema and functions to your Convex development environment:
+```bash
+npx convex dev
+```
 
-## Deploy on Vercel
+### 5. Run the Application
+In a separate terminal, start the Next.js development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Your app will now be running on `http://localhost:3000`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+<div align="center">
+  <i>Built with passion to elevate your productivity.</i>
+</div>
+
