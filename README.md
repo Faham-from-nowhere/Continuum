@@ -64,7 +64,7 @@ Follow these instructions to set up the project locally.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/Continuum.git
+git clone https://github.com/Faham-from-nowhere/Continuum.git
 cd Continuum
 ```
 
@@ -113,3 +113,4 @@ Your app will now be running on `http://localhost:3000`.
   <i>Built with passion to elevate your productivity.</i>
 </div>
 
+**Note** :== This Project extends the Jotion build by CodeWithAntonio and adds AI features, real time collaboration, PWA, version History and advanced views amongst other things. Thank you [AntonioErdeljac](https://github.com/antonioerdeljac)) 
