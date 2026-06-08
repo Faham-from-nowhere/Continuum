@@ -113,4 +113,7 @@ Your app will now be running on `http://localhost:3000`.
   <i>Built with passion to elevate your productivity.</i>
 </div>
 
-**Note** :== This Project extends the Jotion build by CodeWithAntonio and adds AI features, real time collaboration, PWA, version History and advanced views amongst other things. Thank you [AntonioErdeljac](https://github.com/antonioerdeljac)) 
+
+
+
+**Note** :== This Project extends the Jotion build by CodeWithAntonio and adds AI features, real time collaboration, PWA, version History and advanced views amongst other things. Thank you [AntonioErdeljac](https://github.com/antonioerdeljac) :) 
