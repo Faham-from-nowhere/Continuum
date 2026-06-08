@@ -40,19 +40,21 @@ interface EditorProps {
   onChange: (value: string) => void;
   initialContent?: string;
   editable?: boolean;
+  liveblocks?: boolean;
 }
 
 export default function Editor({
   onChange,
   initialContent,
   editable = true,
+  liveblocks = true,
 }: EditorProps) {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
 
   const hasLiveblocks = !!process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY;
 
-  if (hasLiveblocks) {
+  if (hasLiveblocks && liveblocks) {
     return (
       <LiveblocksEditor 
         onChange={onChange} 
